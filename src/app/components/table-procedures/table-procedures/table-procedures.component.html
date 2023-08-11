@@ -1,0 +1,38 @@
+<h2>{{airport_name}}</h2><br>
+<table class="max-w-2xl border text-center text-sm font-light dark:border-neutral-500 mx-auto">
+  <thead class="border-b font-medium dark:border-neutral-500">
+  <tr>
+    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+      Number
+    </th>
+    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+      Procedures
+    </th>
+    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+      Type
+    </th>
+    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+      <span>Ir</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let procedure of ifr_details" class="border-b dark:border-neutral-500">
+    <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+      {{procedure.number}}
+    </td>
+    <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+      {{procedure.names}}
+    </td>
+    <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+      {{procedure.type}}
+    </td>
+    <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+      <a (click)="openPdf(procedure.number)" class="cursor-pointer">
+        <img src="/assets/file-pdf-solid.svg">
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

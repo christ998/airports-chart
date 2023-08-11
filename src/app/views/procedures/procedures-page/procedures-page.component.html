@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center">
+  <h3 class="font-bold">New Search</h3>
+  <app-search-box (loadingStatus)="handleLoading($event)"></app-search-box>
+  <br><br>
+  <div *ngIf="!isLoading; else loading" class="text-center">
+    <div *ngIf="procedures && Object.keys(procedures).length > 0; else notFound">
+      <app-table-procedures [procedures]="procedures"></app-table-procedures>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <app-loading-circle></app-loading-circle>
+</ng-template>
+
+<ng-template #notFound>
+  <h2>Airport not found</h2>
+</ng-template>
+
+
