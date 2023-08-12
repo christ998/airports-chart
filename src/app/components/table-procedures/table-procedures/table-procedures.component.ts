@@ -31,12 +31,17 @@ export class TableProceduresComponent implements OnInit {
   }
 
   openPdf(number: string) {
-    // this.chartService.getChart(number, this.icao, this.country).subscribe((response) => {
-    //   const file = new Blob([response], { type: 'application/pdf' });
-    //   const fileURL = URL.createObjectURL(file);
-    //   window.open(fileURL, '_blank');
-    // })
-    const api = `${this.apiUrl}/${this.country}/${this.icao}/${number}`;
-    window.open(api, '_blank');
+    document.body.style.cursor = 'wait';
+    this.chartService.getChart(number, this.icao, this.country).subscribe((response) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      document.body.style.cursor = 'auto';
+
+      window.open(fileURL, '_blank');
+    })
+    // const pageBuffer = `${this.apiUrl}/${this.country}/${this.icao}/${number}`;
+    // const blob = new Blob([pageBuffer], {type: 'application/pdf'})
+    // const pdfUrl = URL.createObjectURL(blob);
+    // window.open(pageBuffer, '_blank');
   }
 }
