@@ -31,17 +31,23 @@ export class TableProceduresComponent implements OnInit {
   }
 
   openPdf(number: string) {
-    document.body.style.cursor = 'wait';
-    this.chartService.getChart(number, this.icao, this.country).subscribe((response) => {
-      const file = new Blob([response], { type: 'application/pdf' });
-      const fileURL = URL.createObjectURL(file);
-      document.body.style.cursor = 'auto';
-
-      window.open(fileURL, '_blank');
-    })
-    // const pageBuffer = `${this.apiUrl}/${this.country}/${this.icao}/${number}`;
-    // const blob = new Blob([pageBuffer], {type: 'application/pdf'})
-    // const pdfUrl = URL.createObjectURL(blob);
-    // window.open(pageBuffer, '_blank');
+    // document.body.style.cursor = 'wait';
+    // this.chartService.getChart(number, this.icao, this.country).subscribe({
+    //   next: (response) => {
+    //     const file = new Blob([response], { type: 'application/pdf' });
+    //     const fileURL = URL.createObjectURL(file);
+    //     document.body.style.cursor = 'auto';
+    //
+    //     window.open(fileURL, '_blank');
+    //   },
+    //   error: err => {
+    //     document.body.style.cursor = 'auto';
+    //   }
+    //
+    // })
+    const pageBuffer = `${this.apiUrl}/${this.country}/${this.icao}/${number}`;
+    const blob = new Blob([pageBuffer], {type: 'application/pdf'})
+    const pdfUrl = URL.createObjectURL(blob);
+    window.open(pageBuffer, '_blank');
   }
 }
